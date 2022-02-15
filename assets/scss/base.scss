@@ -1,22 +1,24 @@
 @font-face {
-  font-family: SedgwickAve;
-  src: url('../fonts/SedgwickAve-Regular.ttf');
+  font-family: Roboto;
+  src: url('~@/assets/fonts/Roboto-Regular.ttf');
   font-weight: 400;
-  display: block;
+  font-display: block;
 }
 
 @font-face {
-  font-family: Roboto;
-  src: url('../fonts/Roboto-Regular.ttf');
-  font-weight: 600;
-  display: block;
+  font-family: Sedgwick;
+  src: url('~@/assets/fonts/SedgwickAve-Regular.ttf');
+  font-weight: 500;
 }
 
 body {
   font-family: Roboto;
   width: 100%;
+  overflow-x: hidden;
   font-size: 1rem;
-  font-size: 30px;
+  padding-bottom: 10.9rem;
+  font-size: 16px;
+  background-color: color('background');
 }
 
 * {
@@ -28,7 +30,19 @@ body {
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   &:focus {
     outline: none;
   }
+}
+
+hr {
+  color: color('menu-item', 'price');
+  border-style: dashed;
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-width: 1px;
 }
