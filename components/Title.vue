@@ -25,12 +25,18 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   justify-content: center;
+  @include screen('small', 'medium') {
+    height: 130px;
+  }
   h1 {
     font-family: Sedgwick;
     font-weight: normal;
     font-size: 80px;
     line-height: 100px;
     letter-spacing: 0.1em;
+    @include screen('small', 'medium') {
+      font-size: 35px;
+    }
   }
 }
 </style>

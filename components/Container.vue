@@ -14,14 +14,8 @@ export default Vue.extend({})
 .container {
   margin: 0 auto;
   max-width: 1338px;
-  @include screen('small') {
+  @include screen('small', 'medium', 'large') {
     width: 90%;
-  }
-  @include screen('medium') {
-    width: 85%;
-  }
-  @include screen('large', 'infinity') {
-    width: 70%;
   }
 }
 </style>

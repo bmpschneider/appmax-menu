@@ -20,5 +20,6 @@ export default Vue.extend({
 .content-buttons {
   display: flex;
   justify-content: flex-end;
+  margin: 0 20px;
 }
 </style>

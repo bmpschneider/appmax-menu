@@ -33,6 +33,10 @@ export default Vue.extend({
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
+  @include screen('small', 'medium') {
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+  }
 }
 .id {
   width: 100%;

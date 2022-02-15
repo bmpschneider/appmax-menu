@@ -1,6 +1,6 @@
 <template>
   <div class="content-button">
-    <button @click="action">
+    <button @click="action" :class="type == 'cancel' ? 'cancel' : ''">
       <h2>
         {{ text }}
       </h2>
@@ -43,8 +43,18 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   margin-top: 67px;
+  @include screen('small', 'medium') {
+    width: 100%;
+  }
 }
+.cancel {
+  background-color: white;
+  margin-right: 15px;
 
+  h2 {
+    color: rgba(168, 58, 44, 0.7) !important;
+  }
+}
 button {
   width: 200px;
   height: 100px;
@@ -53,8 +63,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
-
+  @include screen('small', 'medium') {
+    width: 100%;
+    height: 100%;
+    h2 {
+      font-size: 15px !important;
+      line-height: 15px;
+    }
+  }
   h2 {
     color: #fbf6ea;
     font-weight: 400;
