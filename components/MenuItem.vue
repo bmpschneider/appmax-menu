@@ -9,7 +9,9 @@
       <div class="price">5,50</div>
       <div class="price">5,50</div>
       <div class="content-btn">
-        <button><img src="@/assets/images/icons/edit.svg" /></button>
+        <NuxtLink to="/edit">
+          <button><img src="@/assets/images/icons/edit.svg" /></button>
+        </NuxtLink>
         <button><img src="@/assets/images/icons/delete.svg" /></button>
       </div>
     </div>

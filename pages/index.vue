@@ -2,6 +2,7 @@
   <div class="box">
     <Title :text="'Cardápio'" />
     <MenuItem />
+    <Button :text="'Novo Item'" :type="'register'" />
   </div>
 </template>
 
