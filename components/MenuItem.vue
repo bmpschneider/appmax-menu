@@ -1,34 +1,52 @@
 <template>
-  <div class="content-item">
-    <div class="menu-item">
-      <div class="id">01</div>
-      <div class="title">Batata Frita</div>
-      <div class="description">
-        300g de batata frita com 50g de queijo cheddar
+  <div class="container-item">
+    <div class="content-item" v-for="item in items" :key="item.id">
+      <div class="menu-item">
+        <div class="id">{{ item.id }}</div>
+        <div class="title">{{ item.title }}</div>
+        <div class="description">
+          {{ item.description }}
+        </div>
+        <div class="price">{{ item.price }}</div>
+        <div class="content-btn">
+          <NuxtLink :to="`/edit/${item.id}`">
+            <button><img src="@/assets/images/icons/edit.svg" /></button>
+          </NuxtLink>
+          <button @click="removeItem(item.id)">
+            <img src="@/assets/images/icons/delete.svg" />
+          </button>
+        </div>
       </div>
-      <div class="price">5,50</div>
-      <div class="price">5,50</div>
-      <div class="content-btn">
-        <NuxtLink to="/edit">
-          <button><img src="@/assets/images/icons/edit.svg" /></button>
-        </NuxtLink>
-        <button><img src="@/assets/images/icons/delete.svg" /></button>
-      </div>
+      <hr />
     </div>
-    <hr />
   </div>
 </template>
 
 <script lang="ts">
+import { mapState, mapActions } from 'vuex'
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  computed: mapState(['items']),
+  methods: {
+    ...mapActions(['deleteItem']),
+    removeItem(id: number) {
+      this.deleteItem(id)
+    },
+  },
+})
 </script>
 
 <style lang="scss" scoped>
+.container-item {
+  padding: 0px 5px;
+}
 .content-item {
   height: 108px;
-  padding: 15px 5px;
+  @include screen('small') {
+    height: 130px;
+    padding: 5px;
+  }
 }
 .menu-item {
   display: grid;
@@ -47,18 +65,29 @@ export default Vue.extend({})
     text-align: center;
     justify-content: center;
     height: 66px;
+    @include screen('small', 'medium') {
+      font-size: 25px;
+      line-height: 80px;
+      margin-right: 10px;
+    }
   }
   .title {
     grid-area: title;
     font-size: 30px;
     line-height: 35px;
     color: color('menu-item', 'title');
+    @include screen('small') {
+      font-size: 20px;
+    }
   }
   .description {
     grid-area: description;
     font-size: 15px;
     line-height: 18px;
     color: color('menu-item', 'description');
+    @include screen('small', 'medium') {
+      font-size: 12px;
+    }
   }
   .price {
     grid-area: price;
@@ -68,12 +97,18 @@ export default Vue.extend({})
     display: flex;
     align-items: center;
     justify-content: right;
+    @include screen('small', 'medium') {
+      font-size: 20px;
+    }
   }
   .content-btn {
     grid-area: content-btn;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    @include screen('small') {
+      margin-left: 5px;
+    }
   }
   button {
     background-color: color('background');

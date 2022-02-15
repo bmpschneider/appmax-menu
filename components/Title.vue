@@ -21,7 +21,7 @@ export default Vue.extend({
 .title {
   height: 183px;
   left: 386px;
-  top: 57px;
+  margin-top: 57px;
   display: flex;
   align-items: center;
   justify-content: center;

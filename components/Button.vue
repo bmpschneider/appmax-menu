@@ -45,6 +45,7 @@ export default Vue.extend({
   margin-top: 67px;
   @include screen('small', 'medium') {
     width: 100%;
+    margin-top: 30px;
   }
 }
 .cancel {
