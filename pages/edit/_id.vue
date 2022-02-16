@@ -1,24 +1,22 @@
 <template>
   <div class="box">
-    <Title :text="'Editar Item'" />
-    <RegisterEditItem :type="'edit'" />
-    <div class="content-buttons">
-      <Button :text="'Cancelar'" :type="'cancel'" />
-      <Button :text="'Salvar'" :type="'save'" />
-    </div>
+    <BaseTitle :text="'Editar Item'" />
+    <BaseFormItem :type="'edit'" :currentItem="currentItem" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { Item } from '@/models/Item'
+
 export default Vue.extend({
   layout: 'menu',
+  computed: {
+    currentItem(): Item {
+      return this.$store.state.currentItem
+    },
+  },
 })
 </script>
 
-<style lang="scss" scoped>
-.content-buttons {
-  display: flex;
-  justify-content: flex-end;
-}
-</style>
+<style lang="scss" scoped></style>

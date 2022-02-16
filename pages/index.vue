@@ -1,8 +1,8 @@
 <template>
   <div class="box">
-    <Title :text="'Cardápio'" />
-    <MenuItem />
-    <Button :text="'Novo Item'" :type="'register'" />
+    <BaseTitle :text="'Cardápio'" />
+    <MenuContent />
+    <BaseButton :text="'Novo Item'" :type="'register'" />
   </div>
 </template>
 

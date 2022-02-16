@@ -1,11 +1,7 @@
 <template>
   <div class="box">
-    <Title :text="'Cadastrar Item'" />
-    <RegisterEditItem :type="'register'" />
-    <div class="content-buttons">
-      <Button :text="'Cancelar'" :type="'cancel'" />
-      <Button :text="'Salvar'" :type="'save'" />
-    </div>
+    <BaseTitle :text="'Cadastrar Item'" />
+    <BaseFormItem :type="'register'" :currentItem="{}" />
   </div>
 </template>
 
@@ -16,10 +12,4 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
-.content-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 20px;
-}
-</style>
+<style lang="scss" scoped></style>

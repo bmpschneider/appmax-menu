@@ -1,6 +1,9 @@
 <template>
   <div class="content-button">
-    <button @click="action" :class="type == 'cancel' ? 'cancel' : ''">
+    <button
+      v-on:click.stop.prevent="action"
+      :class="type == 'cancel' ? 'cancel' : ''"
+    >
       <h2>
         {{ text }}
       </h2>

@@ -1,10 +1,15 @@
 <template>
   <div>
-    <div class="name">
-      <h3>{{ name }}</h3>
-    </div>
+    <label>
+      <h3>{{ label }}</h3>
+    </label>
     <div class="input">
-      <input type="text" :placeholder="`${name} do produto`" />
+      <input
+        :value="modelValue"
+        type="text"
+        :placeholder="`${label} do produto`"
+        @input="$emit('update', $event.target.value)"
+      />
     </div>
   </div>
 </template>
@@ -14,9 +19,13 @@ import Vue from 'vue'
 
 export default Vue.extend({
   props: {
-    name: {
+    label: {
       type: String,
       required: true,
+    },
+    modelValue: {
+      type: [String, Number],
+      default: '',
     },
   },
 })

@@ -10,7 +10,9 @@
         <div class="price">{{ item.price }}</div>
         <div class="content-btn">
           <NuxtLink :to="`/edit/${item.id}`">
-            <button><img src="@/assets/images/icons/edit.svg" /></button>
+            <button @click="saveCurrentItem(item)">
+              <img src="@/assets/images/icons/edit.svg" />
+            </button>
           </NuxtLink>
           <button @click="removeItem(item.id)">
             <img src="@/assets/images/icons/delete.svg" />
@@ -23,15 +25,25 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import Vue from 'vue'
+import { Item } from '@/models/Item'
 
 export default Vue.extend({
-  computed: mapState(['items']),
+  computed: {
+    items(): Item {
+      return this.$store.state.items
+    },
+  },
   methods: {
     ...mapActions(['deleteItem']),
+    ...mapActions(['setCurrentItem']),
     removeItem(id: number) {
       this.deleteItem(id)
+    },
+    saveCurrentItem(item: Item) {
+      console.log('save')
+      this.setCurrentItem(item)
     },
   },
 })

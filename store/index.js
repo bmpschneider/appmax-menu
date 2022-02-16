@@ -25,17 +25,26 @@ export const state = () => ({
       price: '5,50',
     },
   ],
+  currentItem: {},
 })
 
 export const getters = {
   getItemById: (state) => (id) => {
     return state.items.find((item) => item.id === id)
   },
+  $currentItem(state) {
+    return state.currentItem
+  },
 }
 
 export const mutations = {
   SET_ITEM(state, newItem) {
     state.items.push(newItem)
+    console.log('mutation')
+  },
+  SET_CURRENT_ITEM(state, item) {
+    state.currentItem = item
+    console.log('mutation', item)
   },
   DELETE_ITEM(state, id) {
     const index = state.items.findIndex((item) => item.id === id)
@@ -50,6 +59,11 @@ export const mutations = {
 export const actions = {
   async setItem({ commit }, item) {
     await commit('SET_ITEM', item)
+    console.log('action')
+  },
+  async setCurrentItem({ commit }, item) {
+    await commit('SET_CURRENT_ITEM', item)
+    console.log('action')
   },
   async deleteItem({ commit }, id) {
     await commit('DELETE_ITEM', id)
