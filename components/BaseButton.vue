@@ -27,14 +27,15 @@ export default Vue.extend({
   },
   methods: {
     buttonAction() {
-      if (this.type === 'register') {
-        this.$router.push('/register')
-      }
-      if (this.type === 'cancel') {
-        this.$router.push('/')
-      }
-      if (this.type === 'save') {
-        this.$emit('saveItem')
+      switch (this.type) {
+        case 'register':
+          this.$router.push('/register')
+          break
+        case 'cancel':
+          this.$router.push('/')
+          break
+        case 'save':
+          this.$emit('saveItem')
       }
     },
   },
