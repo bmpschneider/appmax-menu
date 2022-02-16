@@ -2,24 +2,58 @@
   <div>
     <form class="content-form">
       <div v-if="type == 'edit'" class="id">
-        <BaseInput :label="'ID'" :model-value="currentItem.id" />
+        <label>
+          <h3>ID</h3>
+        </label>
+        <div class="input">
+          <input
+            :value="currentItem.id"
+            type="text"
+            :placeholder="`ID do produto`"
+            readonly
+          />
+        </div>
       </div>
+
       <div class="title">
-        <BaseInput :label="'Título'" :model-value="currentItem.title" />
-      </div>
-      <div class="description">
-        <BaseInput
-          :label="'Descrição'"
-          :model-value="currentItem.description"
+        <label>
+          <h3>Título</h3>
+        </label>
+        <input
+          :value="currentItem.title"
+          type="text"
+          :placeholder="`Descrição do produto`"
+          @input="saveCurrentItemTitle"
         />
       </div>
+
+      <div class="description">
+        <label>
+          <h3>Descrição</h3>
+        </label>
+        <input
+          :value="currentItem.description"
+          type="text"
+          :placeholder="`Descrição do produto`"
+          @input="saveCurrentItemDescription"
+        />
+      </div>
+
       <div class="price">
-        <BaseInput :label="'Valor'" :model-value="currentItem.price" />
+        <label>
+          <h3>Valor</h3>
+        </label>
+        <input
+          :value="currentItem.price"
+          type="text"
+          :placeholder="`Preço do produto`"
+          @input="saveCurrentItemPrice"
+        />
       </div>
     </form>
     <div class="content-buttons">
       <BaseButton :text="'Cancelar'" :type="'cancel'" />
-      <BaseButton :text="'Salvar'" :type="'save'" />
+      <BaseButton :text="'Salvar'" :type="'save'" @saveItem="saveItem" />
     </div>
   </div>
 </template>
@@ -38,6 +72,30 @@ export default Vue.extend({
     currentItem: {
       type: Object,
     } as PropOptions<Item>,
+  },
+  data() {
+    return {
+      editedItem: {
+        id: this.currentItem.id,
+        title: this.currentItem.title,
+        description: this.currentItem.description,
+        price: this.currentItem.price,
+      } as Item,
+    }
+  },
+  methods: {
+    saveCurrentItemTitle(event: any) {
+      this.editedItem.title = event.target.value
+    },
+    saveCurrentItemDescription(event: any) {
+      this.editedItem.description = event.target.value
+    },
+    saveCurrentItemPrice(event: any) {
+      this.editedItem.price = event.target.value
+    },
+    saveItem() {
+      console.log('salvar item', this.editedItem)
+    },
   },
 })
 </script>
@@ -62,5 +120,29 @@ export default Vue.extend({
 }
 .title {
   width: 100%;
+}
+h3 {
+  font-size: 30px;
+  line-height: 35px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  @include screen('small', 'medium') {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+}
+input {
+  border-radius: 10px;
+  height: 95px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 30px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.8);
+  @include screen('small', 'medium') {
+    font-size: 15px;
+    height: 90%;
+    padding: 10px 10px;
+  }
 }
 </style>

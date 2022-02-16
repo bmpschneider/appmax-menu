@@ -34,7 +34,7 @@ export default Vue.extend({
         this.$router.push('/')
       }
       if (this.type === 'save') {
-        console.log('save')
+        this.$emit('saveItem')
       }
     },
   },
