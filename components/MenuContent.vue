@@ -1,18 +1,18 @@
 <template>
-  <div class="container-item">
-    <div v-for="(item, index) in items" :key="index" class="content-item">
-      <div class="menu-item">
-        <div class="id">{{ ('0' + [index + 1]).slice(-2) }}</div>
+  <div class="container__list-item">
+    <div v-for="(item, index) in items" :key="index" class="content">
+      <div class="content__item">
+        <div class="content__id">{{ ('0' + [index + 1]).slice(-2) }}</div>
 
-        <div class="title">{{ item.title }}</div>
+        <div class="content__title">{{ item.title }}</div>
 
-        <div class="description">
+        <div class="content__description">
           {{ item.description }}
         </div>
 
-        <div class="price">{{ item.price }}</div>
+        <div class="content__price">{{ item.price }}</div>
 
-        <div class="content-btn">
+        <div class="content__btn">
           <NuxtLink :to="`/edit/${item.id}`">
             <button @click="saveCurrentItem(item)">
               <img src="@/assets/images/icons/edit.svg" />
@@ -58,24 +58,33 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.container-item {
+.container__list-item {
   padding: 0px 5px;
+  margin-bottom: 37px;
+  @include screen('small') {
+    margin-bottom: 0px;
+  }
 }
-.content-item {
+
+.content {
   height: 108px;
   @include screen('small') {
     height: 130px;
     padding: 5px;
   }
 }
-.menu-item {
+.content__item {
   display: grid;
   grid-template-columns: 1fr 10fr 2fr 1fr;
   grid-template-areas:
     'id title price content-btn'
     'id description price content-btn';
   font-weight: 600;
-  .id {
+  grid-gap: 0px 10px;
+  @include screen('small') {
+    grid-gap: 0px 5px;
+  }
+  .content__id {
     grid-area: id;
     font-size: 53px;
     line-height: 62px;
@@ -91,7 +100,7 @@ export default Vue.extend({
       margin-right: 10px;
     }
   }
-  .title {
+  .content__title {
     grid-area: title;
     font-size: 30px;
     line-height: 35px;
@@ -100,7 +109,7 @@ export default Vue.extend({
       font-size: 20px;
     }
   }
-  .description {
+  .content__description {
     grid-area: description;
     font-size: 15px;
     line-height: 18px;
@@ -109,7 +118,7 @@ export default Vue.extend({
       font-size: 12px;
     }
   }
-  .price {
+  .content__price {
     grid-area: price;
     font-size: 53px;
     line-height: 62px;
@@ -121,7 +130,7 @@ export default Vue.extend({
       font-size: 20px;
     }
   }
-  .content-btn {
+  .content__btn {
     grid-area: content-btn;
     display: flex;
     justify-content: space-evenly;

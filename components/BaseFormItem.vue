@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <form class="content-form">
-      <div v-if="type == 'edit'" class="id">
+  <div class="content">
+    <form class="content__form">
+      <div v-if="type == 'edit'" class="content__form-id">
         <label>
           <h3>ID</h3>
         </label>
-        <div class="input">
+        <div class="content__form-input">
           <input
             :value="currentItem.id"
             type="text"
@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="title">
+      <div class="content__form-title">
         <label>
           <h3>Título</h3>
         </label>
@@ -27,7 +27,7 @@
         />
       </div>
 
-      <div class="description">
+      <div class="content__form-description">
         <label>
           <h3>Descrição</h3>
         </label>
@@ -39,7 +39,7 @@
         />
       </div>
 
-      <div class="price">
+      <div class="content__form-price">
         <label>
           <h3>Valor</h3>
         </label>
@@ -51,7 +51,7 @@
         />
       </div>
     </form>
-    <div class="content-buttons">
+    <div class="content__buttons">
       <BaseButton :text="'Cancelar'" :type="'cancel'" />
       <BaseButton :text="'Salvar'" :type="'save'" @saveItem="saveItem" />
     </div>
@@ -111,24 +111,29 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.content-form {
+.content__form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
   @include screen('small', 'medium') {
     grid-template-columns: 1fr;
-    grid-gap: 15px;
+    grid-gap: 25px 15px;
   }
 }
-.content-buttons {
+.content__buttons {
   display: flex;
   justify-content: flex-end;
   grid-template-columns: 1fr;
+  height: 100px;
+  margin-top: 178px;
+  @include screen('small', 'medium') {
+    margin-top: 0px;
+  }
 }
-.id {
+.content__form-id {
   width: 100%;
 }
-.title {
+.content__form-title {
   width: 100%;
 }
 h3 {
@@ -151,7 +156,7 @@ input {
   color: rgba(0, 0, 0, 0.8);
   @include screen('small', 'medium') {
     font-size: 15px;
-    height: 90%;
+    height: 50px;
     padding: 10px 10px;
   }
 }

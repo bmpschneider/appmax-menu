@@ -1,5 +1,5 @@
 <template>
-  <div class="title">
+  <div class="container__title">
     <h1>{{ text }}</h1>
   </div>
 </template>
@@ -18,10 +18,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.title {
+.container__title {
   height: 183px;
   left: 386px;
   margin-top: 57px;
+  margin-bottom: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,8 +35,10 @@ export default Vue.extend({
     font-size: 80px;
     line-height: 100px;
     letter-spacing: 0.1em;
+    text-align: center;
     @include screen('small', 'medium') {
       font-size: 35px;
+      line-height: 90%;
     }
   }
 }

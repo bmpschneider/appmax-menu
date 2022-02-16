@@ -1,5 +1,5 @@
 <template>
-  <div class="content-button">
+  <div class="container__button">
     <button
       :class="type == 'cancel' ? 'cancel' : ''"
       @click.stop.prevent="buttonAction"
@@ -43,10 +43,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.content-button {
+.container__button {
   display: flex;
   justify-content: center;
-  margin-top: 67px;
   @include screen('small', 'medium') {
     width: 100%;
     margin-top: 30px;
@@ -70,7 +69,7 @@ button {
   justify-content: center;
   @include screen('small', 'medium') {
     width: 100%;
-    height: 100%;
+    height: 50px;
     h2 {
       font-size: 15px !important;
       line-height: 15px;
