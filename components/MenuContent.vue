@@ -1,19 +1,24 @@
 <template>
   <div class="container-item">
-    <div class="content-item" v-for="item in items" :key="item.id">
+    <div v-for="item in items" :key="item.id" class="content-item">
       <div class="menu-item">
         <div class="id">{{ item.id }}</div>
+
         <div class="title">{{ item.title }}</div>
+
         <div class="description">
           {{ item.description }}
         </div>
+
         <div class="price">{{ item.price }}</div>
+
         <div class="content-btn">
           <NuxtLink :to="`/edit/${item.id}`">
             <button @click="saveCurrentItem(item)">
               <img src="@/assets/images/icons/edit.svg" />
             </button>
           </NuxtLink>
+
           <button @click="removeItem(item.id)">
             <img src="@/assets/images/icons/delete.svg" />
           </button>
@@ -25,8 +30,8 @@
 </template>
 
 <script lang="ts">
-import { mapActions } from 'vuex'
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 import { Item } from '@/models/Item'
 
 export default Vue.extend({

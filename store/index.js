@@ -26,49 +26,40 @@ export const state = () => ({
     },
   ],
   currentItem: {},
+  lastId: 4,
 })
 
-export const getters = {
-  getItemById: (state) => (id) => {
-    return state.items.find((item) => item.id === id)
-  },
-  $currentItem(state) {
-    return state.currentItem
-  },
-}
-
 export const mutations = {
-  SET_ITEM(state, newItem) {
+  CREATE_ITEM(state, newItem) {
+    const id = state.lastId + 1
+    state.lastId++
+    newItem.id = ('0' + id).slice(-2)
     state.items.push(newItem)
-    console.log('mutation')
   },
   SET_CURRENT_ITEM(state, item) {
     state.currentItem = item
-    console.log('mutation', item)
   },
   DELETE_ITEM(state, id) {
     const index = state.items.findIndex((item) => item.id === id)
     state.items.splice(index, 1)
   },
-  SEARCH_ITEM(state, id) {
-    const index = state.items.findIndex((item) => item.id === id)
-    state.items.splice(index, 1)
+  EDIT_ITEM(state, editedItem) {
+    const index = state.items.findIndex((item) => item.id === editedItem.id)
+    state.items.splice(index, 1, editedItem)
   },
 }
 
 export const actions = {
-  async setItem({ commit }, item) {
-    await commit('SET_ITEM', item)
-    console.log('action')
+  async createItem({ commit }, item) {
+    await commit('CREATE_ITEM', item)
+  },
+  async editItem({ commit }, editedItem) {
+    await commit('EDIT_ITEM', editedItem)
   },
   async setCurrentItem({ commit }, item) {
     await commit('SET_CURRENT_ITEM', item)
-    console.log('action')
   },
   async deleteItem({ commit }, id) {
     await commit('DELETE_ITEM', id)
-  },
-  async searchItem({ commit }, id) {
-    await commit('SEARCH_ITEM', id)
   },
 }

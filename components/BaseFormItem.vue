@@ -60,6 +60,7 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
+import { mapActions } from 'vuex'
 import { Item } from '@/models/Item'
 
 export default Vue.extend({
@@ -84,6 +85,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    ...mapActions(['createItem']),
+    ...mapActions(['editItem']),
+
     saveCurrentItemTitle(event: any) {
       this.editedItem.title = event.target.value
     },
@@ -94,7 +98,13 @@ export default Vue.extend({
       this.editedItem.price = event.target.value
     },
     saveItem() {
-      console.log('salvar item', this.editedItem)
+      if (this.type === 'register') {
+        this.createItem(this.editedItem)
+        this.$router.push('/')
+      } else {
+        this.editItem(this.editedItem)
+        this.$router.push('/')
+      }
     },
   },
 })
