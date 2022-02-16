@@ -99,11 +99,27 @@ export default Vue.extend({
     },
     saveItem() {
       if (this.type === 'register') {
-        this.createItem(this.editedItem)
-        this.$router.push('/')
+        if (this.validateForm()) {
+          this.createItem(this.editedItem)
+          this.$router.push('/')
+        }
       } else {
         this.editItem(this.editedItem)
         this.$router.push('/')
+      }
+    },
+    validateForm() {
+      if (
+        this.editedItem.title === '' ||
+        this.editedItem.title === undefined ||
+        this.editedItem.description === '' ||
+        this.editedItem.description === undefined ||
+        this.editedItem.price === '' ||
+        this.editedItem.price === undefined
+      ) {
+        alert('Favor preencher todos os dados!')
+      } else {
+        return true
       }
     },
   },
