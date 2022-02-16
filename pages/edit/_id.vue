@@ -1,7 +1,7 @@
 <template>
-  <div class="box">
+  <div>
     <BaseTitle :text="'Editar Item'" />
-    <BaseFormItem :type="'edit'" :currentItem="currentItem" />
+    <BaseFormItem :type="'edit'" :current-item="currentItem" />
   </div>
 </template>
 
@@ -18,5 +18,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style lang="scss" scoped></style>

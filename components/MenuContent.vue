@@ -1,8 +1,8 @@
 <template>
   <div class="container-item">
-    <div v-for="item in items" :key="item.id" class="content-item">
+    <div v-for="(item, index) in items" :key="index" class="content-item">
       <div class="menu-item">
-        <div class="id">{{ item.id }}</div>
+        <div class="id">{{ ('0' + [index + 1]).slice(-2) }}</div>
 
         <div class="title">{{ item.title }}</div>
 
@@ -38,6 +38,10 @@ export default Vue.extend({
   computed: {
     items(): Item {
       return this.$store.state.items
+        .slice()
+        .sort((a: Item, b: Item) =>
+          a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+        )
     },
   },
   methods: {
@@ -47,7 +51,6 @@ export default Vue.extend({
       this.deleteItem(id)
     },
     saveCurrentItem(item: Item) {
-      console.log('save')
       this.setCurrentItem(item)
     },
   },

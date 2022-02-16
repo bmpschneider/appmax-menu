@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <BaseTitle :text="'Cadastrar Item'" />
-    <BaseFormItem :type="'register'" :currentItem="{}" />
+    <BaseFormItem :type="'register'" :current-item="{}" />
   </div>
 </template>
 

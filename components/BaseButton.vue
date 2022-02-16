@@ -1,8 +1,8 @@
 <template>
   <div class="content-button">
     <button
-      v-on:click.stop.prevent="action"
       :class="type == 'cancel' ? 'cancel' : ''"
+      @click.stop.prevent="buttonAction"
     >
       <h2>
         {{ text }}
@@ -26,7 +26,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    action() {
+    buttonAction() {
       if (this.type === 'register') {
         this.$router.push('/register')
       }
